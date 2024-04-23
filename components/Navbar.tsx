@@ -63,7 +63,7 @@ const NavContent = () => {
 
 const Navbar = () => {
   return (
-    <div className="w-full flex bg-n-100 items-center justify-between flex-row shadow-xl  transition ease-out">
+    <div className="w-full flex bg-n-100 items-center justify-between flex-row shadow-xl transition ease-out z-30 relative">
       <div className="flex justify-start">
         <Link href="/" className="flex items-center py-1">
           <Image
