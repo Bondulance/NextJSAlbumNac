@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useRef, useState } from "react";
 import { ScrollParallax } from "react-just-parallax";
 import Button from "./Button";
+import { useAuth } from "@clerk/nextjs";
 
 interface Props {
   height: number;
@@ -29,7 +30,7 @@ const StaticCard = ({ height, width, imgSrc, otherClasses }: Props) => {
 const Hero = () => {
   const [startIndex, setStartIndex] = useState(0);
   const albumsPerPage = 5;
-
+  const id = useAuth();
   const totalAlbums = 20; // Assuming you have 10 albums in total
   const parallaxRef = useRef(null);
 
@@ -114,7 +115,7 @@ const Hero = () => {
         <Button
           title="Start Ranking.."
           otherClasses="bg-white text-n-100 shadow-lg"
-          href="/rank"
+          href={`/rank/:id`}
         />
       </div>
     </>

@@ -6,7 +6,7 @@ export const connectToDatabase = async () => {
   mongoose.set("strictQuery", true);
 
   if (!process.env.MONGODB_URL) {
-    console.log("mongoDB key is missing");
+    return console.log("MISSING MONGODB_UL");
   }
   if (isConnected) {
     return;
@@ -14,7 +14,10 @@ export const connectToDatabase = async () => {
 
   try {
     await mongoose.connect(process.env.MONGODB_URL, {
-      dbName: "albumnac",
+      dbName: "bodhioverflow",
     });
+
+    isConnected = true;
+    console.log("MongoDB is connected");
   } catch (error) {}
 };

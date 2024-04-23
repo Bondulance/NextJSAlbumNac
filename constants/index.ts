@@ -2,7 +2,7 @@ export const links = [
   {
     id: 0,
     title: "Rank",
-    href: "/rank",
+    href: "/rank/:id",
   },
   {
     id: 1,
@@ -26,7 +26,7 @@ export const navcontent = [
   {
     id: 1,
     title: "Rank",
-    href: "/rank",
+    href: "/rank/:id",
     picture: "/assets/leaderboard.svg",
   },
   {

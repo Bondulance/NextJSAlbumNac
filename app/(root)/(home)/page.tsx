@@ -2,9 +2,6 @@ import Artist from "@/components/Artist";
 import Button from "@/components/Button";
 import Hero from "@/components/Hero";
 
-import Image from "next/image";
-import { ScrollParallax } from "react-just-parallax";
-
 export default function Home() {
   return (
     <div className="mt-8 w-full px-10 flex flex-col overflow-hidden">
