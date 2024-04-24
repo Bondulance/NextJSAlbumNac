@@ -1,41 +1,39 @@
-"use client";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 interface Props {
-  otherStyles?: string;
-  href?: string;
+  createdAt: Date;
+  views: number;
+  author: string;
+  genre: string;
+  description: string;
   title: string;
-  plus?: boolean;
-  handleClick?: boolean;
+  _id: string;
 }
 
-export const handleNewRanking = () => {};
-
-const Ranking = ({ otherStyles, href, title, plus, handleClick }: Props) => {
+const Ranking = ({
+  createdAt,
+  views,
+  author,
+  genre,
+  description,
+  title,
+  _id,
+}: Props) => {
   return (
-    <button onClick={handleNewRanking}>
-      <div
-        className={`${otherStyles} py-8 px-2 flex items-center justify-center flex-col bprder-n-400 bg-n-100`}
-      >
-        {plus === true ? (
-          <div className="py-2">
-            <Image
-              src="/assets/plus.png"
-              className="invert filter"
-              height={50}
-              width={50}
-              alt="plus"
-            />
+    <Link href={`/ranklist/${_id}`}>
+      <div className="border-n-400 border-2 py-5 px-2">
+        <div className="py-2">
+          <h1>{title}</h1>
+          <p>{description}</p>
+          <div className="flex gap-2">
+            <p>{genre}</p>
+            <p>{author}</p>
+            <p>{views}</p>
           </div>
-        ) : (
-          ""
-        )}
-
-        <h1 className="text-n-400 font-semibold">{title}</h1>
+        </div>
       </div>
-    </button>
+    </Link>
   );
 };
 

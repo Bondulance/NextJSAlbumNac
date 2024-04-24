@@ -5,6 +5,13 @@ export interface CreateRanklistParams {
   title: string;
   description: string;
   genre: string;
-  author: Schema.Types.ObjectId | IUser;
+  author: Schema.Types.ObjectId | IUser | string;
   path: string;
+}
+
+export interface GetRankListParams {
+  page?: number;
+  pageSize?: number;
+  searchQuery?: string;
+  filter?: string;
 }

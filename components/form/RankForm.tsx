@@ -50,13 +50,13 @@ const RankForm = ({ mongoUserId }: Props) => {
         title: values.title,
         description: values.description,
         genre: values.genre,
-        author: JSON.parse(mongoUserId),
+        author: mongoUserId,
         path: pathname,
       });
-      router.push("/");
+      router.push("/rank/:id");
     } catch (error) {
-    } finally {
-      setIsSubmitting(false);
+      console.log(error);
+      throw error;
     }
   }
 
