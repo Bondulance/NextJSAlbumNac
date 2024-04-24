@@ -14,14 +14,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createRankList } from "@/lib/actions/rank.action";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
-const formSchema = z.object({
-  title: z.string().min(2).max(50),
-  description: z.string().min(2).max(100),
-  genre: z.string().min(2).max(20),
-});
+interface Props {
+  mongoUserId: string;
+}
 
-const RankForm = () => {
+const RankForm = ({ mongoUserId }: Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [IsSubmitting, setIsSubmitting] = useState(false);
+  const formSchema = z.object({
+    title: z.string().min(2).max(50),
+    description: z.string().min(2).max(100),
+    genre: z.string().min(2).max(20),
+  });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,11 +42,24 @@ const RankForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+
+    try {
+      await createRankList({
+        title: values.title,
+        description: values.description,
+        genre: values.genre,
+        author: JSON.parse(mongoUserId),
+        path: pathname,
+      });
+      router.push("/");
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+    }
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -104,7 +127,7 @@ const RankForm = () => {
           type="submit"
           className="bg-n-100 text-n-200 rounded-xl max-sm:items-center"
         >
-          Submit
+          {IsSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </form>
     </Form>

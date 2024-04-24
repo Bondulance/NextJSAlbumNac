@@ -14,6 +14,6 @@ const ListSchema = new Schema({
   picture: { type: String, required: true },
 });
 
-const Lists = models.Lists || model("List", ListSchema);
+const Lists = models.Lists || model("Lists", ListSchema);
 
 export default Lists;
