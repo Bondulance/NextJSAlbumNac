@@ -34,7 +34,7 @@ export async function getRankList(params: GetRankListParams) {
     const { page = 1, pageSize = 8, filter, searchQuery } = params;
 
     const ranklists = await Rank.find()
-      .populate({ path: "lists", model: Lists })
+      .populate({ path: "listItems", model: Lists })
       .populate({ path: "author", model: User })
       .sort({ createdAt: -1 });
 
