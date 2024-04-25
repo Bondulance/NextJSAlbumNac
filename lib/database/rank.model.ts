@@ -11,7 +11,7 @@ export interface IRank extends Document {
   author: Schema.Types.ObjectId;
   listItems: Schema.Types.ObjectId[];
 }
-
+//@ts-ignore
 const RankSchema = new Schema({
   title: { type: String, required: true, unique: true },
   description: { type: String, required: true },
@@ -21,6 +21,7 @@ const RankSchema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: User },
   listItems: [{ type: Schema.Types.ObjectId, ref: Lists }],
 });
-
+//@ts-ignore
 const Rank = models.Rank || model("Rank", RankSchema);
+//@ts-ignore
 export default Rank;

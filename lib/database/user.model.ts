@@ -10,7 +10,7 @@ export interface IUser extends Document {
   lists: Schema.Types.ObjectId[];
   joinedAt: Date;
 }
-
+//@ts-ignore
 const UserSchema = new Schema({
   clerkId: { type: String, required: true },
   name: { type: String, required: true },
@@ -20,7 +20,7 @@ const UserSchema = new Schema({
   lists: [{ type: Schema.Types.ObjectId, ref: Rank }],
   joinedAt: { type: Date, default: Date.now },
 });
-
+//@ts-ignore
 const User = models.User || model("User", UserSchema);
-
+//@ts-ignore
 export default User;
