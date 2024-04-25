@@ -1,16 +1,21 @@
-import { createUser, deleteUser, updateUser } from "@/lib/actions/user.action";
-import { WebhookEvent } from "@clerk/nextjs/server";
-import { headers } from "next/headers";
-import { NextResponse } from "next/server";
+/* eslint-disable camelcase */
 import { Webhook } from "svix";
+import { headers } from "next/headers";
+import { WebhookEvent } from "@clerk/nextjs/server";
+import { createUser, deleteUser, updateUser } from "@/lib/actions/user.action";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+  // You can find this in the Clerk Dashboard -> Webhoos -> choose the webhook
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
-    throw new Error("Please add ENV WEbhook");
+    throw new Error(
+      "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
+    );
   }
 
+  // Get the headers
   const headerPayload = headers();
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
@@ -65,7 +70,6 @@ export async function POST(req: Request) {
   }
 
   if (eventType === "user.updated") {
-    console.log("user updated");
     const { id, email_addresses, image_url, username, first_name, last_name } =
       evt.data;
 
