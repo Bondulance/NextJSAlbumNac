@@ -4,6 +4,8 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import React from "react";
 
+//@ts-nocheck
+
 const Page = async () => {
   const { userId } = auth();
 
