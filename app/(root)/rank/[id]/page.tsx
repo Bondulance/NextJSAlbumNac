@@ -1,10 +1,11 @@
 import NewRanking from "@/components/NewRanking";
 import Ranking from "@/components/Ranking";
-import { getRankList } from "@/lib/actions/rank.action";
+import { getRankListbyUserId } from "@/lib/actions/rank.action";
+
 import React from "react";
 
 const Page = async () => {
-  const result = await getRankList({});
+  const result = await getRankListbyUserId({});
   return (
     <div className="mt-10 px-10 w-full">
       <div className="grid grid-cols-5 grid-rows-3 gap-2">
@@ -16,7 +17,7 @@ const Page = async () => {
         />
 
         {result.ranklists.length > 0
-          ? result.ranklists.map((ranklist) => (
+          ? result.ranklists.map((ranklist: any) => (
               <Ranking
                 key={ranklist._id}
                 _id={ranklist._id}
