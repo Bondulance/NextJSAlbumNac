@@ -9,7 +9,7 @@ export interface CreateRanklistParams {
   path: string;
 }
 
-export interface GetRankListParams {
+export interface GetRankListbyUserIdParams {
   page?: number;
   pageSize?: number;
   searchQuery?: string;

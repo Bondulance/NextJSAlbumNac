@@ -3,7 +3,10 @@
 import { revalidatePath } from "next/cache";
 import Rank from "../database/rank.model";
 import { connectToDatabase } from "../mongoose";
-import { CreateRanklistParams, GetRankListParams } from "../shared.types";
+import {
+  CreateRanklistParams,
+  GetRankListbyUserIdParams,
+} from "../shared.types";
 import Lists from "../database/lists.model";
 import User from "../database/user.model";
 
@@ -27,7 +30,7 @@ export async function createRankList(params: CreateRanklistParams) {
   }
 }
 
-export async function getRankList(params: GetRankListParams) {
+export async function getRankListbyUserId(params: GetRankListbyUserIdParams) {
   try {
     connectToDatabase();
 

@@ -1,5 +1,5 @@
 import { Schema, models, model, Document } from "mongoose";
-import Lists from "./lists.model";
+import Rank from "./rank.model";
 
 export interface IUser extends Document {
   clerkId: string;
@@ -17,7 +17,7 @@ const UserSchema = new Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   picture: { type: String, required: true },
-  lists: [{ type: Schema.Types.ObjectId, ref: Lists }],
+  lists: [{ type: Schema.Types.ObjectId, ref: Rank }],
   joinedAt: { type: Date, default: Date.now },
 });
 
