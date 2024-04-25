@@ -8,7 +8,7 @@ export default authMiddleware({
     "/api/webhook",
     "/community",
   ],
-  ignoredRoutes: ["/api/webhook"],
+  ignoredRoutes: ["/api/webhook", "/assets"],
 });
 
 export const config = {
