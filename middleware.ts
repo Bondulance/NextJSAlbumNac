@@ -7,7 +7,7 @@ export default authMiddleware({
     "/",
     "/api/webhook",
     "/community",
-    "/assets",
+    "/public/assets",
   ],
   ignoredRoutes: ["/api/webhook"],
 });
