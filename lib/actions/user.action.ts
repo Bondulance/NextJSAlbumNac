@@ -7,6 +7,7 @@ import {
   CreateUserParams,
   DeleteUserParams,
   UpdateUserParams,
+  getUserByIdParams,
 } from "../shared.types";
 import Rank from "../database/rank.model";
 
@@ -63,14 +64,37 @@ export async function deleteUser(params: DeleteUserParams) {
 
     const user = await User.findOneAndDelete({ clerkId });
 
-    if (!user) {
-      throw new Error("User not found");
-    }
+    // if (!user) {
+    //   throw new Error("User not found");
+    // }
 
     await Rank.deleteMany({ author: user._id });
 
     const deletedUser = await User.findByIdAndDelete(user._id);
     return deletedUser;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getUserInfo(params: getUserByIdParams) {
+  try {
+    connectToDatabase();
+
+    const { userId } = params;
+
+    const user = await User.findOne({ clerkId: userId });
+    console.log({ clerkId: userId });
+    console.log(user);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    return {
+      user,
+    };
   } catch (error) {
     console.log(error);
     throw error;

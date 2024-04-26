@@ -8,6 +8,7 @@ export default authMiddleware({
     "/api/webhook",
     "/community",
     "/public/assets",
+    "/assets/logo.ico",
   ],
   ignoredRoutes: ["/api/webhook"],
 });

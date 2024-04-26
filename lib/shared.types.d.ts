@@ -14,6 +14,11 @@ export interface GetRankListbyUserIdParams {
   pageSize?: number;
   searchQuery?: string;
   filter?: string;
+  userId: string;
+}
+
+export interface getRankListbyIdParams {
+  rankId: string;
 }
 
 export interface CreateUserParams {
@@ -32,4 +37,13 @@ export interface UpdateUserParams {
 
 export interface DeleteUserParams {
   clerkId: string;
+}
+
+export interface getUserByIdParams {
+  userId: string;
+}
+
+export interface URLProps {
+  params: { id: string };
+  searchParams: { [key: string]: string | undefined };
 }

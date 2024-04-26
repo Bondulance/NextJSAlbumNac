@@ -1,10 +1,24 @@
+import StaticCard from "@/components/StaticCard";
 import RankForm from "@/components/form/RankForm";
 import { getUserById } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import React from "react";
 
-//@ts-nocheck
+const Caroseul = () => {
+  return (
+    <>
+      <StaticCard height={150} width={150} imgSrc="/assets/album/image5.png" />
+      <StaticCard
+        height={200}
+        width={200}
+        imgSrc="/assets/album/image12.png"
+        otherClasses="shadow-lg shadow-n-400 shrink-1"
+      />
+      <StaticCard height={150} width={150} imgSrc="/assets/album/image15.png" />
+    </>
+  );
+};
 
 const Page = async () => {
   const { userId } = auth();
@@ -14,10 +28,16 @@ const Page = async () => {
   const mongoUser = await getUserById({ userId });
 
   return (
-    <div className="mt-10 flex-col px-10 w-1/2 max-sm:w-full">
-      <h1 className="text-n-400 font-bold text-[2rem]">Make Rank</h1>
-      <div className="mt-6">
-        <RankForm mongoUserId={JSON.stringify(mongoUser?._id)} />
+    <div className="flex flex-row justify-between px-10 ">
+      <div className="mt-10 flex-col w-1/2 max-sm:w-full">
+        <h1 className="text-n-400 font-bold text-[2rem]">Make Rank</h1>
+        <div className="mt-6">
+          <RankForm mongoUserId={JSON.stringify(mongoUser?._id)} />
+        </div>
+      </div>
+
+      <div className="mt-10 max-lg:hidden lg:pl-5 flex items-center justify-center">
+        <Caroseul />
       </div>
     </div>
   );

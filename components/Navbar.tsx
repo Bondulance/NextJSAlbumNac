@@ -1,6 +1,6 @@
 "use client";
 import { links, navcontent } from "@/constants";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton, useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -17,6 +17,7 @@ import Button from "./Button";
 
 const NavContent = () => {
   const pathname = usePathname();
+  const { userId } = useAuth();
   return (
     <>
       <div className="flex mt-10 flex-col gap-2">
@@ -24,6 +25,13 @@ const NavContent = () => {
           const isActive =
             (pathname.includes(item.href) && item.href.length > 1) ||
             pathname === item.href;
+
+          if (item.href === "/rank") {
+            if (userId) {
+              console.log(userId);
+              item.href = `${item.href}/${userId}`;
+            }
+          }
 
           return (
             <Link key={item.id} href={item.href}>

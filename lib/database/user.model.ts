@@ -11,7 +11,7 @@ export interface IUser extends Document {
   joinedAt: Date;
 }
 
-const UserSchema: any = new Schema({
+const UserSchema = new Schema({
   clerkId: { type: String, required: true },
   name: { type: String, required: true },
   username: { type: String, required: true, unique: true },

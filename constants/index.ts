@@ -2,7 +2,7 @@ export const links = [
   {
     id: 0,
     title: "Rank",
-    href: "/rank/:id",
+    href: "/rank",
   },
   {
     id: 1,

@@ -6,6 +6,7 @@ import { connectToDatabase } from "../mongoose";
 import {
   CreateRanklistParams,
   GetRankListbyUserIdParams,
+  getRankListbyIdParams,
 } from "../shared.types";
 import Lists from "../database/lists.model";
 import User from "../database/user.model";
@@ -30,18 +31,19 @@ export async function createRankList(params: CreateRanklistParams) {
   }
 }
 
-export async function getRankListbyUserId(params: GetRankListbyUserIdParams) {
+export async function getRankListbyId(params: getRankListbyIdParams) {
   try {
     connectToDatabase();
 
-    const { page = 1, pageSize = 8, filter, searchQuery } = params;
+    const { rankId } = params;
 
-    const ranklists = await Rank.find()
-      .populate({ path: "listItems", model: Lists })
-      .populate({ path: "author", model: User })
-      .sort({ createdAt: -1 });
+    const rank = await Rank.findById(rankId).populate({
+      path: "author",
+      model: User,
+      select: "_id clerkId name picture",
+    });
 
-    return { ranklists };
+    return rank;
   } catch (error) {
     console.log(error);
     throw error;
