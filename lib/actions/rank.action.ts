@@ -31,19 +31,18 @@ export async function createRankList(params: CreateRanklistParams) {
   }
 }
 
-export async function getRankListbyId(params: getRankListbyIdParams) {
+export async function getRankListbyUserId(params: GetRankListbyUserIdParams) {
   try {
     connectToDatabase();
 
-    const { rankId } = params;
+    const { userId, page = 1, pageSize = 8, searchQuery } = params;
 
-    const rank = await Rank.findById(rankId).populate({
-      path: "author",
-      model: User,
-      select: "_id clerkId name picture",
-    });
+    const userRanklists = await Rank.find({ author: userId })
+      .sort({ createdAt: -1 })
+      .limit(pageSize)
+      .populate("author", "_id clerkId name picture");
 
-    return rank;
+    return { userRanklists };
   } catch (error) {
     console.log(error);
     throw error;

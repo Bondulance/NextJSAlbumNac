@@ -18,6 +18,7 @@ export async function getUserById(params: any) {
     const { userId } = params;
 
     const user = await User.findOne({ clerkId: userId });
+    console.log(user);
 
     return user;
   } catch (error) {
@@ -31,6 +32,8 @@ export async function createUser(userData: CreateUserParams) {
     connectToDatabase();
 
     const newUser = await User.create(userData);
+
+    console.log(newUser);
 
     return newUser;
   } catch (error) {
@@ -88,13 +91,22 @@ export async function getUserInfo(params: getUserByIdParams) {
     console.log({ clerkId: userId });
     console.log(user);
 
-    if (!user) {
-      throw new Error("User not found");
-    }
-
     return {
       user,
     };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getUsers(params: any) {
+  try {
+    connectToDatabase();
+
+    const users = await User.find({}).sort({ createdAt: -1 });
+
+    return { users };
   } catch (error) {
     console.log(error);
     throw error;

@@ -1,8 +1,8 @@
 export const links = [
   {
     id: 0,
-    title: "Rank",
-    href: "/rank",
+    title: "Profile",
+    href: "/profile",
   },
   {
     id: 1,
@@ -20,25 +20,25 @@ export const navcontent = [
   {
     id: 0,
     title: "Home",
-    href: "/",
+    route: "/",
     picture: "/assets/home.png",
   },
   {
     id: 1,
-    title: "Rank",
-    href: "/rank/:id",
+    title: "Profile",
+    route: "/profile",
     picture: "/assets/leaderboard.svg",
   },
   {
     id: 2,
     title: "Community",
-    href: "/community",
+    route: "/community",
     picture: "/assets/people.png",
   },
   {
     id: 3,
     title: "Games",
-    href: "/games",
+    route: "/games",
     picture: "/assets/games.svg",
   },
 ];

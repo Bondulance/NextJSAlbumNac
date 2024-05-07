@@ -18,25 +18,25 @@ import Button from "./Button";
 const NavContent = () => {
   const pathname = usePathname();
   const { userId } = useAuth();
+
   return (
     <>
       <div className="flex mt-10 flex-col gap-2">
         {navcontent.map((item) => {
           const isActive =
-            (pathname.includes(item.href) && item.href.length > 1) ||
-            pathname === item.href;
+            (pathname.includes(item.route) && item.route.length > 1) ||
+            pathname === item.route;
 
-          if (item.href === "/rank") {
+          if (item.route === "/profile") {
             if (userId) {
-              console.log(userId);
-              item.href === `${item.href}/${userId}`;
+              item.route = `${item.route}/${userId}`;
             } else {
               return null;
             }
           }
 
           return (
-            <Link key={item.id} href={item.href}>
+            <Link key={item.id} href={item.route}>
               <div
                 className={`rounded-xl px-2 flex items-center mt-2 w-full py-2 ${
                   isActive ? "bg-n-300" : ""
@@ -72,6 +72,7 @@ const NavContent = () => {
 };
 
 const Navbar = () => {
+  const { userId } = useAuth();
   return (
     <div className="w-full flex bg-n-100 items-center justify-between flex-row shadow-xl transition ease-out z-30 relative">
       <div className="flex justify-start">
@@ -90,15 +91,25 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-12 pr-10">
-        {links.map((item) => (
-          <Link
-            key={item.id}
-            href={item.href}
-            className="cursor-pointer text-n-400 hover:underline hover:text-n-200 transition ease-in max-md:hidden"
-          >
-            <h1>{item.title}</h1>
-          </Link>
-        ))}
+        {links.map((item) => {
+          if (item.href === "/profile") {
+            if (userId) {
+              item.href = `${item.href}/${userId}`;
+            } else {
+              return null;
+            }
+          }
+
+          return (
+            <Link
+              key={item.id}
+              href={item.href}
+              className="cursor-pointer text-n-400 hover:underline hover:text-n-200 transition ease-in max-md:hidden"
+            >
+              <h1>{item.title}</h1>
+            </Link>
+          );
+        })}
         <div className="pl-24">
           <SignedIn>
             <UserButton

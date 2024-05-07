@@ -95,7 +95,7 @@ const Hero = () => {
         <Button
           title="Start Ranking.."
           otherClasses="bg-white text-n-100 shadow-lg"
-          href={`/rank/:id`}
+          href="/profile"
         />
       </div>
     </>
