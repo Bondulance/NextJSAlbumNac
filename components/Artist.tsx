@@ -13,7 +13,7 @@ const Artist = () => {
         Utilizing the powerful Spotify API, any albums you love we have.
       </p>
 
-      <div className="mt-7 flex gap-5 max-sm:gap-1 max-sm:mt-5 overflow-x-scroll">
+      <div className="mt-6 flex gap-5 max-sm:gap-1 max-sm:mt-5 overflow-x-scroll">
         {musicApps.map((item) => (
           <div
             key={item.id}

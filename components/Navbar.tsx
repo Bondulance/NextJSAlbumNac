@@ -29,7 +29,9 @@ const NavContent = () => {
           if (item.href === "/rank") {
             if (userId) {
               console.log(userId);
-              item.href = `${item.href}/${userId}`;
+              item.href === `${item.href}/${userId}`;
+            } else {
+              return null;
             }
           }
 
