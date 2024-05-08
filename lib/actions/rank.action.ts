@@ -40,7 +40,8 @@ export async function getRankListbyUserId(params: GetRankListbyUserIdParams) {
     const userRanklists = await Rank.find({ author: userId })
       .sort({ createdAt: -1 })
       .limit(pageSize)
-      .populate("author", "_id clerkId name picture");
+      .populate("author", "_id clerkId name picture")
+      .populate("lists", "description genre title id author");
 
     return { userRanklists };
   } catch (error) {

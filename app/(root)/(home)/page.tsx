@@ -1,6 +1,7 @@
 import Artist from "@/components/Artist";
 import Button from "@/components/Button";
 import Hero from "@/components/Hero";
+import BouncyButton from "@/components/oneuse/BouncyButton";
 
 export default function Home() {
   return (
@@ -15,7 +16,11 @@ export default function Home() {
       </p>
       <div className="mt-14 z-10">
         <Hero />
+        <div className="relative my-10 flex items-center justify-center animate-bounce">
+          <BouncyButton />
+        </div>
       </div>
+
       <div className="mt-5 relative">
         <Artist />
       </div>

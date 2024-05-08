@@ -16,7 +16,7 @@ const NewRanking = ({ otherStyles, title, plus, href }: Props) => {
   return (
     <Link href={href}>
       <div
-        className={`${otherStyles} py-8 px-2 flex items-center justify-center flex-col`}
+        className={`${otherStyles} py-8 px-2 flex items-center justify-center flex-col border-dashed border-n-400 border-2 w-40 h-40`}
       >
         {plus === true ? (
           <div className="py-2">

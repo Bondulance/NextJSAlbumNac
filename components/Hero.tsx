@@ -6,6 +6,7 @@ import { ScrollParallax } from "react-just-parallax";
 import Button from "./Button";
 import { useAuth } from "@clerk/nextjs";
 import StaticCard from "./StaticCard";
+import BouncyButton from "./oneuse/BouncyButton";
 
 const Hero = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -88,14 +89,6 @@ const Hero = () => {
           width={200}
           imgSrc="/assets/album/image3.png"
           otherClasses="shrink-0"
-        />
-      </div>
-
-      <div className="relative my-10 flex items-center justify-center animate-bounce">
-        <Button
-          title="Start Ranking.."
-          otherClasses="bg-white text-n-100 shadow-lg"
-          href="/profile"
         />
       </div>
     </>
